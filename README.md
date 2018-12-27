@@ -6,6 +6,7 @@
  - fuzzy file search
  - more info on status and tab lines
  - keyboard mapping
+ - sublime style multiple selections
 
 ## VIM Plugins
 Kudos to these awesome people.
