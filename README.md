@@ -8,6 +8,7 @@
  - keyboard mapping
 
 ## Keyboard Mapping 
+
 | keys | vim command | description | 
 | ---------|---------------------|
 | map Ctrl + O | :NERDTreeToggle<CR>| Open file tree view |  
