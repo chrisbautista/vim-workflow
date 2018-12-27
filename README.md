@@ -10,7 +10,7 @@
 ## Keyboard Mapping 
 
 | keys | vim command | description | 
-| ---------|---------------------|
+| ---------|-----------|----------|
 | map Ctrl + O | :NERDTreeToggle<CR>| Open file tree view |  
 | map ; | :Files<CR>| fuzzy search files |
 |map Ctrl+_ | :tabedit<CR>| |
