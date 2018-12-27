@@ -8,9 +8,8 @@
  - keyboard mapping
 
 ## Keyboard Mapping 
--------------------------------
 |command|
--------------------------------
+|------------------------------|
 |map <C-o> :NERDTreeToggle<CR>|   
 |map ; :Files<CR>|
 |map <C-_> :tabedit<CR>|
@@ -25,4 +24,4 @@
 |map <C-S-kDel> :wqa<CR>|
 |map <C-S-Home> :mks! ./.vimsession<CR>|
 |map <C-Home> :source ./.vimsession<CR>|
-----------------------------------------
+
