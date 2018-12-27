@@ -7,6 +7,24 @@
  - more info on status and tab lines
  - keyboard mapping
 
+## VIM Plugins
+Kudos to these awesome people.
+- https://github.com/junegunn/vim-github-dashboard.git
+- https://github.com/ctrlpvim/ctrlp.vim
+- https://github.com/pangloss/vim-javascript
+- http://github.com/mattn/emmet-vim/
+- https://github.com/prettier/vim-prettier
+- https://github.com/tpope/vim-fugitive
+- https://github.com/itchyny/lightline.vim
+- https://github.com/terryma/vim-multiple-cursors
+- https://github.com/tpope/vim-eunuch
+- https://github.com/scrooloose/nerdtree
+- https://github.com/editorconfig/editorconfig-vim
+- https://github.com/w0rp/ale
+- https://github.com/airblade/vim-gitgutter
+- https://github.com/junegunn/fzf.vim
+- https://github.com/Valloric/YouCompleteMe
+
 ## Keyboard Mapping 
 
 | keys | vim command | description | 
