@@ -8,10 +8,10 @@
  - keyboard mapping
 
 ## Keyboard Mapping 
-|command|
-|---------|---------------------|
-|map Ctrl + O | :NERDTreeToggle<CR>| Open file tree view |  
-|map ; | :Files<CR>| fuzzy search files |
+| keys | vim command | description | 
+| ---------|---------------------|
+| map Ctrl + O | :NERDTreeToggle<CR>| Open file tree view |  
+| map ; | :Files<CR>| fuzzy search files |
 |map Ctrl+_ | :tabedit<CR>| |
 |map C+t,left| :tabp<CR>| jump to left tab |
 |map C+t,right| :tabn<CR>| jump to right tab|
