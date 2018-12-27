@@ -8,6 +8,7 @@
  - keyboard mapping
 
 ## Keyboard Mapping 
+-------------------------------
 |command|
 -------------------------------
 |map <C-o> :NERDTreeToggle<CR>|   
