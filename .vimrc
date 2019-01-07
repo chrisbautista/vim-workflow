@@ -70,6 +70,7 @@ map <C-F12> :Gblame<CR>
 map <C-S-kDel> :wqa<CR>
 map <C-S-Home> :mks! ./.vimsession<CR>
 map <C-Home> :source ./.vimsession<CR>
+map <F8> :vertical wincmd f<CR> " open file under cursor
 
 let g:seoul256_background = 255
 let g:ycm_server_python_interpreter="/usr/bin/python"
