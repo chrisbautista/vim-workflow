@@ -179,7 +179,7 @@ let g:vdebug_options = {
     \    'continuous_mode'  : 1
     \}
 let g:vdebug_options['path_maps'] = {
-      \  '/code' : '/opt/dev-setup/apps/knoxportal',
+      \  '/code' : '/home/public_html',
       \}
 
 " Nerd tree
