@@ -30,16 +30,16 @@ Kudos to these awesome people.
 
 | keys | vim command | description | 
 | ---------|-----------|----------|
-| map Ctrl + O | :NERDTreeToggle<CR>| Open file tree view |  
+| map &lt;leader&gt;O | :NERDTreeToggle<CR>| Open file tree view |  
 | map ; | :Files<CR>| fuzzy search files |
 |map Ctrl+_ | :tabedit<CR>| |
 |map C+t,left| :tabp<CR>| jump to left tab |
 |map C+t,right| :tabn<CR>| jump to right tab|
-|map C+\ | :vsplit<CR>| split screen |
+|map &lt;leader&gt;+\ | :vsplit<CR>| split screen |
 |map C+S+Right| <C-W><Right>| jump to right screen |
 |map C+S+Left| <C-W><Left>| jump to left screen |
-|map C+F12 | :Gblame<CR> | open gblame |
-|map C+S+kDel | :wqa<CR> | save and exit all windows |
-|map C+S+Home> | :mks! ./.vimsession<CR> | save session |
-|map C+Home| | :source ./.vimsession<CR> | open last saved session for current dir |
+|map &lt;leader&gt;F3 | :Gblame<CR> | open gblame |
+|map &lt;leader&gt;F2 | :wqa<CR> | save and exit all windows |
+|map &lt;leader&gt;F12 | :mks! ./.vimsession<CR> | save session |
+|map &lt;leader&gt;F11 | :source ./.vimsession<CR> | open last saved session for current dir |
 
