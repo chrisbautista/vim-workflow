@@ -43,8 +43,6 @@ Plug 'https://github.com/vim-scripts/grep.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'yegappan/mru'
 Plug 'mileszs/ack.vim' " > sudo apt-get install ack-grep
-
-" debugging php, python, nodejs, etc
 Plug 'vim-vdebug/vdebug'
 " Plug 'jaredly/vim-debug'
 Plug 'SirVer/ultisnips'
