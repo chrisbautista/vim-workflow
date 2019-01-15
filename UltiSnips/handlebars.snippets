@@ -1,0 +1,19 @@
+snippet if "if block"
+	{{#if ${1:value}}}
+	  ${0:${VISUAL}}
+	{{/if}}
+endsnippet
+
+snippet unl "unless"
+	{{#unless ${1:value}}}
+	  ${0:${VISUAL}}
+	{{/unless}}
+endsnippet
+
+snippet ife "if else"
+	{{#if ${1:value}}}
+	${2:${VISUAL}}
+	{{else}}
+	${3}
+	{{/if}}
+endsnippet
