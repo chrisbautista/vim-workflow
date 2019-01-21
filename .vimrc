@@ -11,19 +11,35 @@
 " - use , as <leader>
 "====================
 
-set switchbuf=useopen,usetab
-set nocompatible
-set tabstop=2
-set shiftwidth=2
-set expandtab
-set autoindent
-set smarttab
-set lazyredraw
-"set visualbell
-set mouse=a
-set title
+
+
+"set backupdir=~/.vim/backup
+"set directory=~/.vim/swap
 "set spell
+"set visualbell
+set autoindent
+set backspace=indent,eol,start
+set cursorline " enable cursoline highlight
+set expandtab
+set lazyredraw
+set linebreak
+set mouse=a
+set nobackup
+set nocompatible
 set noeb vb t_vb=
+set noswapfile
+set number " enable line numbers
+set shiftwidth=2
+set smarttab
+set splitbelow
+set splitright
+set switchbuf=useopen,usetab
+set tabstop=2
+set title
+
+" theme
+set t_Co=256
+set background=dark
 
 "
 " Plugins
@@ -73,10 +89,16 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Initialize plugin system
 call plug#end()
 
-"AUTOLOAD ON OPEN
-"  autocmd VimEnter *  MRU 
-"  autocmd VimEnter *  NERDTree | wincmd l | vsplit ~/todo.md | vertical resize 35 
+
+"
+" AUTO COMMANDS
+"
+
+" Run on load
 autocmd VimEnter * if argc() == 0 | call OpenHelpers() | endif
+" Close if no buffers open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 
 " 
 " Keyboard mapping
@@ -133,7 +155,6 @@ nmap 1<kHome> :wincmd r<CR>
 nmap 1<kEnd> :wincmd R<CR>
 
 nmap <leader>j :call GotoJump()<CR>
-"nmap <leader><kHome> if exists('t:NERDTreeBufName') && g:NerdTree.IsOpen() :sb __MRU_Files__<CR>:q<CR>:sb NERD_tree_1<CR>:q<CR>:sb ~/todo.md <CR>:bd<CR> else call OpenHelpers() endif
 nmap <leader><kHome> :call OpenHelpers()<CR> 
 " DO NOT MAP F5, F10
 
@@ -149,27 +170,12 @@ nnoremap <Up> gk
 nnoremap <F1> <nop>
 nnoremap Q <nop>
 nnoremap K <nop>
-set linebreak
-set nobackup
-set noswapfile
-"set backupdir=~/.vim/backup
-"set directory=~/.vim/swap
-set backspace=indent,eol,start
-set splitbelow
-set splitright
 
-" Light color scheme using PaperColor
-set t_Co=256
-set background=dark
+
 colorscheme PaperColor
-
-" Darkula
 "colorscheme dracula
 
-set number " enable line numbers
-set cursorline " enable cursoline highlight
-hi CursorLine   cterm=NONE ctermbg=darkgray ctermfg=white  guibg=darkred guifg=white
-
+highlight CursorLine   cterm=NONE ctermbg=darkgray ctermfg=white  guibg=darkred guifg=white
 highlight Cursor guifg=white guibg=black
 highlight iCursor guifg=white guibg=steelblue
 
@@ -229,7 +235,6 @@ let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 let NERDTreeIgnore = ['\.py[co]$', '__pycache__', 'node_modules']
 let g:NERDTreeWinSize = 30
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "
 " Open helpers
