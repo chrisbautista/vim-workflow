@@ -11,7 +11,19 @@
 " - use , as <leader>
 "====================
 
+set switchbuf=useopen,usetab
 set nocompatible
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set autoindent
+set smarttab
+set lazyredraw
+"set visualbell
+set mouse=a
+set title
+"set spell
+set noeb vb t_vb=
 
 "
 " Plugins
@@ -44,16 +56,17 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'yegappan/mru'
 Plug 'mileszs/ack.vim' " > sudo apt-get install ack-grep
 Plug 'vim-vdebug/vdebug'
-" Plug 'jaredly/vim-debug'
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+"Plug 'honza/vim-snippets'
+
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-Plug 'fatih/vim-go', { 'tag': '*' }
 
-Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+" Go plugins
+"Plug 'fatih/vim-go', { 'tag': '*' }
+"Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
@@ -61,8 +74,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 call plug#end()
 
 "AUTOLOAD ON OPEN
-autocmd VimEnter * MRU
-autocmd VimEnter * NERDTree
+"  autocmd VimEnter *  MRU 
+"  autocmd VimEnter *  NERDTree | wincmd l | vsplit ~/todo.md | vertical resize 35 
+autocmd VimEnter * if argc() == 0 | call OpenHelpers() | endif
 
 " 
 " Keyboard mapping
@@ -72,7 +86,7 @@ let mapleader = ","
 map ; :Files<CR>
 map <leader><leader> :Windows<CR>
 map <leader>' :Buffers<CR>
-map <leader>. :BLines<CR>
+map <leader>. :Lines<CR>
 map <leader>p :bp<CR>
 map <leader>\ :vsplit<CR>
 map <leader>/ :split<CR>
@@ -97,6 +111,7 @@ map <leader><F12> :mks! ./.vimsession<CR>
 map <leader>r :MRU<CR>
 map <leader>l :NERDTreeFind<CR>
 map <leader>o :NERDTreeToggle<CR>
+"map <C-o> :NERDTreeToggle<CR>
 map <C-_> :tabedit<CR>
 map <C-t><left> :tabp<cr>
 map <C-t><right> :tabn<cr>
@@ -106,8 +121,20 @@ map <M-C-Left> :bp<CR>
 map <C-F12> :Gblame<CR>
 map <leader>f :Rgrep<CR> 
 map <C-f> :Ack <C-R><C-W> 
+nmap <leader><F1> :vsplit ~/todo.md<CR> :vertical resize 35<CR>
 
+" moving through windows
 
+nmap 1<Up> :wincmd k<CR>
+nmap 1<Down> :wincmd j<CR>
+nmap 1<Left> :wincmd h<CR>
+nmap 1<Right> :wincmd l<CR>
+nmap 1<kHome> :wincmd r<CR>
+nmap 1<kEnd> :wincmd R<CR>
+
+nmap <leader>j :call GotoJump()<CR>
+"nmap <leader><kHome> if exists('t:NERDTreeBufName') && g:NerdTree.IsOpen() :sb __MRU_Files__<CR>:q<CR>:sb NERD_tree_1<CR>:q<CR>:sb ~/todo.md <CR>:bd<CR> else call OpenHelpers() endif
+nmap <leader><kHome> :call OpenHelpers()<CR> 
 " DO NOT MAP F5, F10
 
 " vim annoyances
@@ -133,7 +160,7 @@ set splitright
 
 " Light color scheme using PaperColor
 set t_Co=256
-set background=light
+set background=dark
 colorscheme PaperColor
 
 " Darkula
@@ -190,7 +217,7 @@ let g:vdebug_options = {
     \    'continuous_mode'  : 1
     \}
 let g:vdebug_options['path_maps'] = {
-      \  '/code' : '/home/public_html',
+      \  '/code' : '/opt/dev-setup/apps/knoxportal',
       \}
 
 " Nerd tree
@@ -203,7 +230,31 @@ let g:NERDTreeDirArrowCollapsible = '-'
 let NERDTreeIgnore = ['\.py[co]$', '__pycache__', 'node_modules']
 let g:NERDTreeWinSize = 30
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" autocmd bufenter * if (winnr(“$”) == 1 && exists(“b:NERDTreeType”) && b:NERDTreeType == “primary”) | q | endif
+
+"
+" Open helpers
+"
+"
+function! OpenHelpers()
+  echom 'Openhelpers start'
+  if exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
+    echom 'Close helpers' 
+    sb __MRU_Files__
+    q
+    NERDTreeToggle
+    sb ~/todo.md
+    bd
+  else
+    echom 'Open helpers'
+    MRU 
+    NERDTree 
+    wincmd l 
+    vsplit ~/todo.md 
+    vertical resize 35  
+  endif  
+endfunction
+
+"autocmd bufenter * if (winnr(“$”) == 1 && exists(“b:NERDTreeType”) && b:NERDTreeType == “primary”) | q | endif
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists(“s:std_in”) | NERDTree | endif
 
@@ -268,6 +319,20 @@ if exists('+colorcolumn')
     au WinLeave * set nocursorline
   augroup END
 endif
+
+function! GotoJump()
+  jumps
+  let j = input("Please select your jump: ")
+  if j != ''
+    let pattern = '\v\c^\+'
+    if j =~ pattern
+      let j = substitute(j, pattern, '', 'g')
+      execute "normal " . j . "\<c-i>"
+    else
+      execute "normal " . j . "\<c-o>"
+    endif
+  endif
+endfunction
 
 
 "## NOTES ##
